@@ -27,49 +27,85 @@ body, html, #root {
 
 h1 {
   margin-bottom: 30px;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
+  background: linear-gradient(45deg, #fff, #f1c40f, #e74c3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShine 2s ease-in-out infinite alternate;
+}
+
+@keyframes textShine {
+  from { filter: brightness(1) saturate(1); }
+  to { filter: brightness(1.2) saturate(1.2); }
 }
 
 input[type="file"] {
   margin: 20px 0;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px dashed rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
   color: white;
   font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+input[type="file"]:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.02);
 }
 
 input[type="file"]::file-selector-button {
-  background: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(45deg, #667eea, #764ba2);
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  border-radius: 10px;
   color: white;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: linear-gradient(45deg, #764ba2, #667eea);
+  transform: scale(1.05);
 }
 
 button {
   padding: 15px 30px;
   font-size: 18px;
   cursor: pointer;
-  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  background: linear-gradient(45deg, #ff4757, #ff6b6b, #ff8e53, #ffa726);
+  background-size: 300% 300%;
+  animation: buttonGlow 3s ease infinite;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   color: white;
   font-weight: bold;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
   margin: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes buttonGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  animation: none;
 }
