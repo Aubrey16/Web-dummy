@@ -31,9 +31,15 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    // Generate a unique filename
+    // Generate a unique filename using validated MIME type
     const timestamp = Date.now();
-    const extension = file.name.split('.').pop() || 'jpg';
+    const mimeToExtension: Record<string, string> = {
+      'image/jpeg': 'jpg',
+      'image/png': 'png',
+      'image/gif': 'gif',
+      'image/webp': 'webp',
+    };
+    const extension = mimeToExtension[file.type];
     const filename = `${timestamp}.${extension}`;
 
     // Upload to Vercel Blob
