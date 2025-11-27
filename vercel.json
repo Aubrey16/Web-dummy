@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/upload.js": {
-      "runtime": "@vercel/node@3"
-    }
-  }
-}

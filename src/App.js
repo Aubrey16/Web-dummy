@@ -13,19 +13,20 @@ function App() {
   const handleUpload = async () => {
     if (!image) return;
     setLoading(true);
-    const formData = new FormData();
-    formData.append('image', image);
+    
     try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-      setUrl(data.url);
+      // Simulate upload with FileReader for demo
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageUrl = e.target.result;
+        setUrl(imageUrl);
+        setLoading(false);
+      };
+      reader.readAsDataURL(image);
     } catch (err) {
       alert('Upload failed');
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -37,9 +38,9 @@ function App() {
       </button>
       {url && (
         <div>
-          <p>Link gambar:</p>
-          <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
-          <div><img src={url} alt="Uploaded" style={{maxWidth: '300px', marginTop: '10px'}} /></div>
+          <p>Gambar berhasil di-upload!</p>
+          <p>Link gambar: <strong>data:image/[type];base64,...</strong></p>
+          <div><img src={url} alt="Uploaded" style={{maxWidth: '300px', marginTop: '10px', border: '2px solid white', borderRadius: '10px'}} /></div>
         </div>
       )}
     </div>
